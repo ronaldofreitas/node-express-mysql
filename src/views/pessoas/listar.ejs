@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>listar usuarios</title>
+	<%- include('../_layout/header') %>
+
+<style>
+table.GeneratedTable {
+  width: 50%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  color: #000000;
+  text-align: center;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #ffcc00;
+}
+</style>
+
+</head>
+<body>
+	<div class="titulo">Lista de pessoas</div>
+	<div class="voltar"><a href="/">Voltar</a></div>
+	<center>
+		<table class="GeneratedTable">
+		  <thead>
+		    <tr>
+		      <th>Pessoa</th>
+		      <th>Profissão</th>
+		      <th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<%for (var result in lista){%>
+			    <tr>
+			      <td><%=lista[result].nome%></td>
+			      <td><%=lista[result].atividade%></td>
+			      <td>
+			      	<a href="/pessoa/revisar/<%=lista[result].id%>">Editar</a>
+			      	<a onclick="return confirmar(<%=lista[result].id%>)" href="javascript:;">Apagar</a>
+			      </td>
+			    </tr>
+		    <%}%>
+		  </tbody>
+		</table>
+	</center>
+</div>
+<script type="text/javascript">
+	
+	function confirmar(id){
+		var r = confirm("Confirma exclusão?");
+		if(r == true){
+			location.href = '/pessoa/deletar/'+id
+		} 
+	}
+</script>
+</body>
+</html>
